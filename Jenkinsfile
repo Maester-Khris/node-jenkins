@@ -1,34 +1,22 @@
 pipeline{
-    // which slave should execute the build. example: { label 'dev'}
     agent any
-
     stages{
-        stage('Checkout Code'){
+        stage("build") {
             steps{
-                git url:'https://github.com/Maester-Khris/node-jenkins.git', branch: 'master'
-                checkout scm
-            }
-        }
-        stage('Build and test'){
-            steps{
-                echo 'Build & test'
-
+                echo 'started building'
                 sh 'npm install'
-
-                sh 'npm run test'
+                sh 'npm build'
             }
         }
-        stage('Build and push Docker images'){
+        stage("test") {
             steps{
-                sh 'docker build -t mrkhris/node-jenkins:latest .'
-
-                withCredentials([
-                    usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')
-                ]){
-                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh 'docker image push mrkhris/node-jenkins:latest'
-                }
+                echo 'started testing'
             }
         }
-    }
+        stage("deploy") {
+            steps{
+                echo 'started deploying'
+            }
+        }
+    }   
 }
