@@ -7,7 +7,7 @@ Technical Description:
     aded afsana
 -   API DESIGN : BREAD
 
-    -   accepted request header
+    -   accepted request header hu
 
         -   application/content: JSON
         -   auth token: JWT
