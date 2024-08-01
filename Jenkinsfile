@@ -61,7 +61,7 @@ pipeline{
             echo 'Slack Notifications'
             // no matter what happens to the build will haoen
             slackSend(
-                channel: '#pipeline-channel',
+                channel: 'pipeline-channel',
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "Find Status of Pipeline:- ${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${BUILD_URL}"
             ) 
