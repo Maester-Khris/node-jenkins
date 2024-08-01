@@ -10,6 +10,7 @@ pipeline{
     agent any
     environment{
         NEW_VERSION = '1.3.0'
+        PUSHER_CHANNEL_CLUSTER = mt1
         DOCKER_REGISTRY = "mrkhris/mongo-express-api" 
         JENKINS_DOCKER_CREDENTIAL = 'dockerHub' 
         dockerImage = '' 
@@ -28,8 +29,11 @@ pipeline{
         }
         stage("test") {
             steps{
-                echo 'started testing'
-                sh 'npm run test'
+                script{
+                    unstable("still have some configuration to make here")
+                    echo 'started testing'
+                    sh 'npm run test'
+                }
             }
         }
         stage("Docker Image deployment") {

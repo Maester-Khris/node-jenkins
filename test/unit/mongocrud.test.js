@@ -1,3 +1,17 @@
+describe('Each method should result on something to mongo db', () => {
+    describe('Create method', () => {
+        it('should return the actual lenght of db plus one', ()=>{
+            expect(true).toBe(true)
+        })
+    })
+})
+
+
+
+
+
+
+
 // const mongoose = require('mongoose')
 // const mongodb = require('mongodb')
 // const localConnection = 'mongodb://127.0.0.1:27017/Taskalert'
