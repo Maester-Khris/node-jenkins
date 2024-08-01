@@ -9,7 +9,7 @@ const app = express()
 
 // setup db connection
 mongoconnection.OpenConnection(process.env.DB_CONNECTION_STRING).then(() => {
-    console.log('connection to mongo well established')
+    console.log('connection to mongo well established, now')
 })
 
 // setup for json data|form data|routing|channel messaging
