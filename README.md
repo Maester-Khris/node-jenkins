@@ -1,4 +1,4 @@
-Technical Description: understood brotherhood 1
+Technical Description: understood brotherhood 2
 
 -   Tech Stack: MEAN
 -   Deployment model:
