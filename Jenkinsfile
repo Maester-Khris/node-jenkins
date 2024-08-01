@@ -24,7 +24,8 @@ pipeline{
                 echo 'started building'
                 echo "working on version ${NEW_VERSION}"
                 sh 'npm install'
-                // sh 'npm run lint:check'
+                // sh 'npm run lint:check' 
+                // addeddsomething here
             }
         }
         stage("test") {
