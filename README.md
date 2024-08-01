@@ -5,7 +5,7 @@ Technical Description: understood brotherhood 2
 -   Technical challenge:
 -   Main func: \* \* \*
     aded afsana
--   API DESIGN : BREAD
+-   API DESIGN : BREAD or CRUD
 
     -   accepted request header hu
 
