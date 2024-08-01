@@ -1,5 +1,6 @@
 Technical Description: understood brotherhood 22
 EZDZIENFEIFNEROINFGRIOENGEIOZNFEIOFNEROFINERIGFNERIOGNEROIGNREGNIERFIEO
+pay attentin now !!!!
 -   Tech Stack: MEAN
 -   Deployment model:
 -   Technical challenge:
