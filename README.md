@@ -1,4 +1,4 @@
-Technical Description:
+Technical Description: understood
 
 -   Tech Stack: MEAN
 -   Deployment model:
