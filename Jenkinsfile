@@ -98,7 +98,6 @@ pipeline{
 //         }
 //     }
 // }
-
 //first way
 // stage{
 //     steps{
