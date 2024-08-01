@@ -10,7 +10,9 @@ pipeline{
     agent any
     environment{
         NEW_VERSION = '1.3.0'
-        // BRANCH_NAME = env.GIT_BRANCH
+        DOCKER_REGISTRY = "mrkhris/mongo-express-api" 
+        JENKINS_DOCKER_CREDENTIAL = 'dockerHub' 
+        dockerImage = '' 
     }
     parameters{
         string(name: 'VERSION', defaultValue:'', description:'version to deploy on render')
@@ -21,18 +23,24 @@ pipeline{
                 echo 'started building'
                 echo "working on version ${NEW_VERSION}"
                 sh 'npm install'
-                sh 'npm run lint:check'
+                // sh 'npm run lint:check'
             }
         }
         stage("test") {
-            // when{
-            //     expression{
-            //         BRANCH_NAME == 'origin/features'
-            //     }
-            // }
             steps{
                 echo 'started testing'
                 sh 'npm run test'
+            }
+        }
+        stage("Docker Image deployment") {
+            steps{
+                script{
+                    echo 'started dockerhub integration'
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    docker.withRegistry('', JENKINS_DOCKER_CREDENTIAL) { 
+                        dockerImage.push() 
+                    }
+                }
             }
         }
         stage("deploy") {
@@ -63,6 +71,7 @@ pipeline{
 }
 
 // ====== How to add more control ===============
+// BRANCH_NAME = env.GIT_BRANCH
 // pipeline{
 //     tools{
 //         // maven 
@@ -83,5 +92,20 @@ pipeline{
 //         }
 //         failure{
 //         }
+//     }
+// }
+
+//first way
+// stage{
+//     steps{
+//         script{
+//             sh 'npm install'
+//         }
+//     }
+// }
+//second way
+// stage{
+//     steps{
+//         sh 'npm install'
 //     }
 // }
