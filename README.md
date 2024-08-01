@@ -29,7 +29,7 @@ Technical Description:
     -   let the db init routing there
     -   let the fulltext search there (working only on title and on body.textcontent)
 
--   Notes:
+-   Notes: hello
 
     -   edit a task:
         -   status: visible|archived|recycled|all
