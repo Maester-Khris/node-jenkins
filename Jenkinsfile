@@ -26,7 +26,7 @@ pipeline{
         stage("test") {
             when{
                 expression{
-                    BRANCH_NAME == 'features'
+                    BRANCH_NAME == 'origin/features'
                 }
             }
             steps{
@@ -38,16 +38,13 @@ pipeline{
             steps{
                 echo 'started deploying'
                 echo 'syntax to declare a single use credential(of type secret text) here'
+                echo 'test credential accessing'
                 withCredentials([
-                    string(credentialsId: 'PUSHER_CHANNEL_APP_ID', variable: PUSHER_APP)
+                    string(credentialsId: 'PUSHER_CHANNEL_APP_ID', variable: PUSHER_APP),
+                    usernamePassword(credentials:'my-user-cred', usernameVariable: 'USER', passwordVariable: 'PWD')
                 ]){
                     echo "my secret is ${PUSHER_APP}"
-                }
-                echo 'same of type username password'
-                withCredentials([
-                    usernamePassword(credentials:'my-user-cred', usernameVariable: USER, passwordVariable: PWD)
-                ]){
-                    sh "echo ${USER} ${PWD} "
+                    sh "echo ${USER} ${PWD}"
                 }
             }
         }
