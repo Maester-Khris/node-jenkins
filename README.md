@@ -7,7 +7,7 @@ Technical Description:
     aded afsana
 -   API DESIGN : BREAD
 
-    -   accepted request header
+    -   accepted request header hu
 
         -   application/content: JSON
         -   auth token: JWT
@@ -29,7 +29,7 @@ Technical Description:
     -   let the db init routing there
     -   let the fulltext search there (working only on title and on body.textcontent)
 
--   Notes:
+-   Notes: hello
 
     -   edit a task:
         -   status: visible|archived|recycled|all
