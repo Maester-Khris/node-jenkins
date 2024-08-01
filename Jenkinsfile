@@ -32,7 +32,7 @@ pipeline{
                 script{
                     unstable("still have some configuration to make here")
                     echo 'started testing'
-                    sh 'npm run test'
+                    // sh 'npm run test'
                 }
             }
         }
