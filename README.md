@@ -2,6 +2,7 @@ Technical Description: understood brotherhood 22
 EZDZIENFEIFNEROINFGRIOENGEIOZNFEIOFNEROFINERIGFNERIOGNEROIGNREGNIERFIEO
 pay attentin now !!!!
 - this could be the begining of something new !!
+- could this be because of ngrok ?
 -   Tech Stack: MEAN
 -   Deployment model:
 -   Technical challenge:
