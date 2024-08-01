@@ -20,6 +20,7 @@ pipeline{
             steps{
                 echo 'started building'
                 echo "working on version ${NEW_VERSION}"
+                sh 'npm ci'
                 sh 'npm run lint:check'
             }
         }
