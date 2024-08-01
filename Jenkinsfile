@@ -12,20 +12,11 @@ pipeline{
         NEW_VERSION = '1.3.0'
         PUSHER_CREDENTIALS = credentials('PUSHER_CHANNEL_APP_ID')
     }
-    // help to define build tools for the projects
-    tools{
-        // maven 
-    }
     parameters{
         string(name: 'VERSION', defaultValue:'', description:'version to deploy on render')
     }
     stages{
         stage("build") {
-            when{
-                expression {
-                    // BRANCH_NAME == 'features' && CODE_CHANGES == true
-                }
-            }
             steps{
                 echo 'started building'
                 echo "working on version ${NEW_VERSION}"
@@ -75,11 +66,29 @@ pipeline{
                 message: "Find Status of Pipeline:- ${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${BUILD_URL}"
             ) 
         }
-        success{
-
-        }
-        failure{
-
-        }
     }
 }
+
+// ====== How to add more control ===============
+// pipeline{
+//     tools{
+//         // maven 
+//     }
+//     stages{
+//         stage{
+//             when{
+//                 expression {
+//                     // BRANCH_NAME == 'features' && CODE_CHANGES == true
+//                 }
+//             }
+//         }
+//     }
+//     post{
+//         success{
+
+//         }
+//         failure{
+
+//         }
+//     }
+// }
