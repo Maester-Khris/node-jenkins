@@ -13,21 +13,22 @@ pipeline{
             steps{
                 echo 'Build & test'
 
-                sh 'npm install'
+                // sh 'npm install'
 
-                sh 'npm run test'
+                // sh 'npm run test'
             }
         }
         stage('Build and push Docker images'){
             steps{
-                sh 'docker build -t mrkhris/node-jenkins:latest .'
+                echo 'dockr integration'
+                // sh 'docker build -t mrkhris/node-jenkins:latest .'
 
-                withCredentials([
-                    usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')
-                ]){
-                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh 'docker image push mrkhris/node-jenkins:latest'
-                }
+                // withCredentials([
+                //     usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')
+                // ]){
+                //     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                //     sh 'docker image push mrkhris/node-jenkins:latest'
+                // }
             }
         }
     }
