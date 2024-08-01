@@ -10,7 +10,7 @@ pipeline{
     agent any
     environment{
         NEW_VERSION = '1.3.0'
-        PUSHER_CREDENTIALS = credentials('PUSHER_CHANNEL_APP_ID')
+        BRANCH_NAME = env.GIT_BRANCH
     }
     parameters{
         string(name: 'VERSION', defaultValue:'', description:'version to deploy on render')
@@ -20,11 +20,10 @@ pipeline{
             steps{
                 echo 'started building'
                 echo "working on version ${NEW_VERSION}"
-                echo "build pusher channel app id ${PUSHER_CREDENTIALS}"
+                sh 'npm run lint:check'
             }
         }
         stage("test") {
-            //define the require condition to execute following scripts
             when{
                 expression{
                     BRANCH_NAME == 'features'
@@ -32,7 +31,6 @@ pipeline{
             }
             steps{
                 echo 'started testing'
-                sh 'npm run lint:check'
                 sh 'npm run test'
             }
         }
@@ -45,7 +43,6 @@ pipeline{
                 ]){
                     echo "my secret is ${PUSHER_APP}"
                 }
-
                 echo 'same of type username password'
                 withCredentials([
                     usernamePassword(credentials:'my-user-cred', usernameVariable: USER, passwordVariable: PWD)
@@ -55,11 +52,9 @@ pipeline{
             }
         }
     }   
-    // used to define build status or build status change
     post{
         always{
             echo 'Slack Notifications'
-            // no matter what happens to the build will haoen
             slackSend(
                 channel: '#pipeline-channel',
                 color: COLOR_MAP[currentBuild.currentResult],
@@ -84,11 +79,11 @@ pipeline{
 //         }
 //     }
 //     post{
+//         always{   
+//         }
 //         success{
-
 //         }
 //         failure{
-
 //         }
 //     }
 // }
