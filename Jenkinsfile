@@ -10,7 +10,7 @@ pipeline{
     agent any
     environment{
         NEW_VERSION = '1.3.0'
-        PUSHER_CHANNEL_CLUSTER = mt1
+        PUSHER_CHANNEL_CLUSTER = 'mt1'
         DOCKER_REGISTRY = "mrkhris/mongo-express-api" 
         JENKINS_DOCKER_CREDENTIAL = 'dockerHub' 
         dockerImage = '' 
