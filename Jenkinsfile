@@ -8,6 +8,10 @@ pipeline{
         JENKINS_DOCKER_CREDENTIAL = 'dockerHub' 
         dockerImage = '' 
     }
+    parameters{
+        string(name: "Image_Name", defaultValue: 'mongo-express-api', description: 'A mongo express api')
+        string(name: "Image_Tag", defaultValue: 'latest', description: 'Mongo express api')
+    }
     stages{
         stage('Build and test'){
             steps{
@@ -20,9 +24,13 @@ pipeline{
             steps{
                 script{
                     echo 'started dockerhub integration'
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    docker.build("${params.Image_Name}:${params.Image_Tag}")
+                    def localImage = "${params.Image_Name}:${params.Image_Tag}"
+                    def repositoryName = "mrkhris/${localImage}"
+                    sh "docker tag ${localImage} ${repositoryName} "
                     docker.withRegistry('', JENKINS_DOCKER_CREDENTIAL) { 
-                        dockerImage.push() 
+                       def image = docker.image("${repositoryName}");
+                       image.push()
                     }
                 }
             }
